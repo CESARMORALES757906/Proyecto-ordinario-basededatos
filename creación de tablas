@@ -1,0 +1,75 @@
+CREATE TABLE zonas (
+    id_zona INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    municipio VARCHAR(100) NOT NULL,
+    periodo_historico VARCHAR(50) NOT NULL,
+    extension_hectareas DECIMAL(10,2) NOT NULL,
+    anio_descubrimiento INT,
+    importancia VARCHAR(20) CHECK (importancia IN ('Alta', 'Media', 'Baja')),
+    descripcion TEXT,
+    coordenadas VARCHAR(100),
+    UNIQUE KEY uk_nombre_zona (nombre)
+) ENGINE=InnoDB;
+
+CREATE TABLE investigadores (
+    id_investigador INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    institucion VARCHAR(100),
+    especialidad VARCHAR(100),
+    nacionalidad VARCHAR(50),
+    fecha_nacimiento DATE,
+    INDEX idx_apellidos (apellidos)
+) ENGINE=InnoDB;
+
+CREATE TABLE estructuras (
+    id_estructura INT AUTO_INCREMENT PRIMARY KEY,
+    id_zona INT NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    altura_metros DECIMAL(6,2),
+    anio_construccion_aprox INT,
+    estado_conservacion VARCHAR(30),
+    descripcion TEXT,
+    CONSTRAINT fk_zona_estructura 
+        FOREIGN KEY (id_zona) REFERENCES zonas(id_zona)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    INDEX idx_tipo_estructura (tipo)
+) ENGINE=InnoDB;
+
+CREATE TABLE hallazgos (
+    id_hallazgo INT AUTO_INCREMENT PRIMARY KEY,
+    id_zona INT NOT NULL,
+    id_estructura INT,
+    nombre VARCHAR(100) NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    material VARCHAR(50),
+    periodo_cultural VARCHAR(50),
+    fecha_descubrimiento DATE,
+    ubicacion_actual VARCHAR(200),
+    descripcion TEXT,
+    CONSTRAINT fk_zona_hallazgo 
+        FOREIGN KEY (id_zona) REFERENCES zonas(id_zona)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_estructura_hallazgo 
+        FOREIGN KEY (id_estructura) REFERENCES estructuras(id_estructura)
+        ON DELETE SET NULL,
+    INDEX idx_tipo_hallazgo (tipo)
+) ENGINE=InnoDB;
+
+CREATE TABLE investigaciones (
+    id_investigacion INT AUTO_INCREMENT PRIMARY KEY,
+    id_zona INT NOT NULL,
+    id_investigador INT NOT NULL,
+    titulo VARCHAR(200) NOT NULL,
+    anio_inicio INT NOT NULL,
+    anio_fin INT,
+    metodologia TEXT,
+    resultados TEXT,
+    CONSTRAINT fk_zona_investigacion 
+        FOREIGN KEY (id_zona) REFERENCES zonas(id_zona),
+    CONSTRAINT fk_investigador_investigacion 
+        FOREIGN KEY (id_investigador) REFERENCES investigadores(id_investigador),
+    INDEX idx_periodo_investigacion (anio_inicio, anio_fin)
+) ENGINE=InnoDB;
