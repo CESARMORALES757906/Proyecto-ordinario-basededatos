@@ -1,0 +1,61 @@
+INSERT INTO zonas (nombre, municipio, periodo_historico, extension_hectareas, anio_descubrimiento, importancia, descripcion) VALUES
+('Monte Albán', 'Santa Cruz Xoxocotlán', 'Preclásico-Clásico', 2075.00, 1931, 'Alta', 'Principal centro ceremonial zapoteca, Patrimonio de la Humanidad'),
+('Mitla', 'San Pablo Villa de Mitla', 'Posclásico', 48.50, 1854, 'Alta', 'Conocida como "Lugar de los Muertos", famosa por sus mosaicos geométricos'),
+('Yagul', 'Tlacolula de Matamoros', 'Posclásico', 36.20, 1954, 'Media', 'Destaca por su palacio de seis patios y juego de pelota'),
+('Dainzú', 'Macuilxóchitl', 'Preclásico', 12.75, 1965, 'Media', 'Importante por sus relieves de jugadores de pelota'),
+('Lambityeco', 'Tlacolula', 'Clásico', 8.90, 1961, 'Media', 'Famoso por sus frisos de estuco y palacios'),
+('Zaachila', 'Villa de Zaachila', 'Posclásico', 15.30, 1962, 'Alta', 'Última capital zapoteca con tumbas importantes'),
+('San José Mogote', 'San José Mogote', 'Preclásico', 25.40, 1966, 'Alta', 'Uno de los primeros asentamientos zapotecas'),
+('Guiengola', 'San Pedro Totolapa', 'Posclásico', 32.10, 1958, 'Media', 'Fortaleza natural mixteca'),
+('Huamelulpan', 'San Martín Huamelulpan', 'Clásico', 18.70, 1972, 'Media', 'Importante centro mixteco'),
+('Cerro de la Campana', 'Suchilquitongo', 'Clásico', 6.80, 1980, 'Baja', 'Sitio con tumbas importantes');
+
+INSERT INTO investigadores (nombre, apellidos, institucion, especialidad, nacionalidad, fecha_nacimiento) VALUES
+('Alfonso', 'Caso Andrade', 'INAH', 'Arqueología Zapoteca', 'Mexicana', '1896-02-01'),
+('Ignacio', 'Bernal García', 'INAH', 'Antropología', 'Mexicana', '1910-02-13'),
+('John', 'Paddock', 'UDLA', 'Etnohistoria', 'Estadounidense', '1918-05-24'),
+('Marcus', 'Winter', 'INAH Oaxaca', 'Arqueología Preclásica', 'Estadounidense', '1943-09-12'),
+('Nelly', 'Robles García', 'INAH', 'Conservación', 'Mexicana', '1951-07-20'),
+('Javier', 'Urcid Serrano', 'Brandeis', 'Epigrafía Zapoteca', 'Mexicana', '1954-03-15'),
+('Verónica', 'Pérez Rodríguez', 'UGA', 'Arqueología Doméstica', 'Mexicana', '1972-11-08'),
+('Ernesto', 'González Licón', 'UABJO', 'Arqueología Mixteca', 'Mexicana', '1958-05-30'),
+('Laura', 'Stiver Walsh', 'CIESAS', 'Bioarqueología', 'Estadounidense', '1967-09-14'),
+('Raúl', 'Matadamas Díaz', 'ENAH', 'Arqueología Posclásica', 'Mexicana', '1975-04-22');
+
+-- Insertar Estructuras
+INSERT INTO estructuras (id_zona, nombre, tipo, altura_metros, anio_construccion_aprox, estado_conservacion) VALUES
+(1, 'Gran Plaza', 'Plaza ceremonial', NULL, 500, 'Bueno'),
+(1, 'Juego de Pelota I', 'Juego de pelota', 5.20, 600, 'Regular'),
+(1, 'Edificio J', 'Observatorio', 12.50, 400, 'Bueno'),
+(2, 'Grupo de las Columnas', 'Conjunto palaciego', 8.75, 900, 'Excelente'),
+(2, 'Tumba 1', 'Estructura funeraria', 4.30, 950, 'Bueno'),
+(3, 'Palacio de los Seis Patios', 'Conjunto residencial', 6.80, 1100, 'Regular'),
+(4, 'Cancha de Juego de Pelota', 'Juego de pelota', 5.50, 700, 'Malo'),
+(5, 'Estructura 195', 'Edificio ceremonial', 7.60, 800, 'Bueno'),
+(6, 'Tumba 1 de Zaachila', 'Tumba', 3.90, 750, 'Bueno'),
+(7, 'Plataforma 1', 'Estructura ceremonial', 4.20, 900, 'Regular');
+
+INSERT INTO hallazgos (id_zona, id_estructura, nombre, tipo, material, periodo_cultural, fecha_descubrimiento) VALUES
+(1, 3, 'Estela 18', 'Monumento lítico', 'Piedra', 'Clásico', '1935-03-12'),
+(1, NULL, 'Máscara del Dios Murciélago', 'Objeto ritual', 'Jade', 'Clásico', '1994-07-22'),
+(2, 4, 'Frisos geométricos', 'Decoración arquitectónica', 'Piedra', 'Posclásico', '1901-05-30'),
+(3, 6, 'Ofrenda 9', 'Conjunto ceremonial', 'Cerámica', 'Posclásico', '1968-09-05'),
+(4, NULL, 'Relieve del jugador de pelota', 'Escultura', 'Piedra', 'Preclásico', '1978-11-15'),
+(5, NULL, 'Friso de Cocijo', 'Relieve', 'Estuco', 'Clásico', '1965-08-20'),
+(6, 9, 'Urna funeraria', 'Objeto funerario', 'Cerámica', 'Posclásico', '1963-04-15'),
+(7, NULL, 'Figurilla de barro', 'Objeto ritual', 'Cerámica', 'Preclásico', '1972-10-03'),
+(8, NULL, 'Punta de proyectil', 'Herramienta', 'Obsidiana', 'Posclásico', '1999-12-20'),
+(9, NULL, 'Vasija efigie', 'Cerámica', 'Barro', 'Clásico', '1985-04-27');
+
+INSERT INTO investigaciones (id_zona, id_investigador, titulo, anio_inicio, anio_fin, metodologia) VALUES
+(1, 1, 'Excavaciones en Monte Albán', 1931, 1943, 'Excavación estratigráfica'),
+(1, 2, 'Estudio de los sistemas constructivos', 1957, 1960, 'Análisis arquitectónico'),
+(2, 3, 'Investigación de las tumbas de Mitla', 1965, 1972, 'Excavación de tumbas'),
+(3, 4, 'Proyecto de rescate en Yagul', 1978, 1985, 'Excavación de salvamento'),
+(4, 5, 'Estudio de materiales cerámicos', 1990, 1995, 'Análisis de laboratorio'),
+(5, 6, 'Epigrafía de Dainzú', 2001, 2006, 'Análisis epigráfico'),
+(6, 7, 'Excavaciones domésticas', 2008, 2012, 'Arqueología doméstica'),
+(7, 8, 'Proyecto de conservación', 2015, 2018, 'Conservación preventiva'),
+(8, 9, 'Estudio de restos óseos', 2019, 2021, 'Bioarqueología'),
+(9, 10, 'Prospección arqueológica', 2022, NULL, 'Prospección sistemática');
+
